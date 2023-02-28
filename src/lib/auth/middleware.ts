@@ -1,13 +1,13 @@
 import createHttpError from "http-errors"
-import { refreshTokens, verifyAccessToken } from "../tools/tokenTools.js";
+import { refreshTokens, verifyAccessToken } from "../tools/tokenTools";
 
-export const JWTAuth = async (req, res, next) => {                                                 //JWT authentication middleware
+export const JWTAuth = async (req:any, res:any, next:any) => {                                                 //JWT authentication middleware
     if (!req.cookies.accessToken) {                                                               //if no access token in cookies
       next(createHttpError(401, "No access token in cookies."))                                   //throw error
   } else {
     try {
       const currentAccessToken = req.cookies.accessToken                                         //get access token from cookies
-      const payload = await verifyAccessToken(currentAccessToken)                              //verify access token
+      const payload:any = await verifyAccessToken(currentAccessToken)                              //verify access token
       if(payload.result !== "fail"){                                                           //if access token is valid
         /* console.log("passingToken") */
       req.user = {                                                                          //create user data in req
@@ -35,7 +35,7 @@ export const JWTAuth = async (req, res, next) => {                              
   }
 }
 
-export const AdminOnly = async (req, res, next) => {                             //Admin only middleware
+export const AdminOnly = async (req:any, res:any, next:any) => {                             //Admin only middleware
   if(req.user.role !== "Admin"){                                                 //if user is not admin
     next(createHttpError(401, "Access Denied"))                                   //throw error
   }

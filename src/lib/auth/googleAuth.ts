@@ -1,7 +1,7 @@
 import passport from "passport";
 import GoogleStrategy from "passport-google-oauth20";
-import userModel from "../../api/models/userModel.js";
-import { createTokens } from "../tools/tokenTools.js";
+import userModel from "../../api/models/UserModel";
+import { createTokens } from "../tools/tokenTools";
 
 const googleStrategy = new GoogleStrategy(                                         // <---- THIS IS THE GOOGLE STRATEGY
   {

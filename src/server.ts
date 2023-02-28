@@ -1,15 +1,15 @@
 import express from "express";
 import cors from "cors";
 import listEndpoints from "express-list-endpoints";
-import router from "././api/router/index.js";
-import googleStrategy from "./lib/auth/googleAuth.js";
-import errorHandler from "./lib/tools/errorHandler.js";
+import router from "././api/router/index";
+import googleStrategy from "./lib/auth/googleAuth";
+import errorHandler from "./lib/tools/errorHandler";
 import passport from "passport";
 import cookieParser from "cookie-parser";
 import { Server as SocketServer } from "socket.io";
 import { createServer } from "http";
-import { newConnectionHandler } from "./socket/index.js";
-import { verifyAccessToken } from "./lib/tools/tokenTools.js";
+import { newConnectionHandler } from "./lib/tools/socketSettings";
+import { verifyAccessToken } from "./lib/tools/tokenTools";
 
 export const server = express();                                                              // <---- THIS IS THE EXPRESS SERVER
 export const httpServer = createServer(server);                                               // <---- THIS IS THE HTTP SERVER
