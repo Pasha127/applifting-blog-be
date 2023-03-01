@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize"
 import curses from "badwords-list";
 import sequelize from "../../db";
 
-const CommentModel = sequelize.define("comment", {
+const CommentModel = sequelize.define("comment", {                      //define the comment model
     commentId: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -11,14 +11,14 @@ const CommentModel = sequelize.define("comment", {
     author: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "Anonymous",
-      validate: {notEmpty: true,not: curses.regex}
+      defaultValue: "Anonymous",                                                     //default author
+      validate: {notEmpty: true,not: curses.regex}                                      //check to see it is not empty and does not contain a curse word
     },
     content: {
         type: DataTypes.TEXT,
         allowNull: false,
-        validate: {notEmpty: true,not: curses.regex}
-    },
+        validate: {notEmpty: true,not: curses.regex}                                     //check to see it is not empty and does not contain a curse word
+    }, 
     userId: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,

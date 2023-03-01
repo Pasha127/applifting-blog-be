@@ -10,7 +10,7 @@ const CommentVoteModel = sequelize.define("commentVote", {
   value: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    validate: {notEmpty: true}
+    validate: {notEmpty: true}                                    //check to see it is not empty
 },
 })
 

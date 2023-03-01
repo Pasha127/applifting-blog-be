@@ -4,29 +4,29 @@ import sequelize from "../../db";
 import ArticleModel from "./ArticleModel";
 import CommentModel from "./CommentModel";
 
-const UserModel = sequelize.define(
-  "user",
+const UserModel = sequelize.define(                                             //define the user model
+  "user", 
   {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4, 
-      primaryKey: true,
+    id: { 
+      type: DataTypes.UUID,  
+      defaultValue: DataTypes.UUIDV4,  
+      primaryKey: true, 
     },
-    displayName: {
+    displayName: { 
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "Anonymous",
-      validate: {notEmpty: true, not: curses.regex }
+      defaultValue: "Anonymous",                                               //default display name
+      validate: {notEmpty: true, not: curses.regex }                      //check to see it is not empty and does not contain a curse word
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {notEmpty: true, not: curses.regex }
+      validate: {notEmpty: true, not: curses.regex }                    //check to see it is not empty and does not contain a curse word
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {notEmpty: true, isEmail: true, not: curses.regex }
+      validate: {notEmpty: true, isEmail: true, not: curses.regex }   //check to see it is not empty, is an email and does not contain a curse word
     },
     refreshToken: {
       type: DataTypes.STRING,
@@ -35,11 +35,11 @@ const UserModel = sequelize.define(
   }
 
 ) 
-UserModel.hasMany(ArticleModel,
-    {foreignKey: "userId",onDelete:"NO ACTION", hooks:true})
-  ArticleModel.belongsTo(UserModel);
-UserModel.hasMany(CommentModel,
-    {foreignKey: "userId",onDelete:"NO ACTION", hooks:true})
-  CommentModel.belongsTo(UserModel);
+UserModel.hasMany(ArticleModel,                                                                 //UserModel has many ArticleModel
+    {foreignKey: "userId",onDelete:"NO ACTION", hooks:true})                                  //set the foreign key to userId and do not cascade on delete
+  ArticleModel.belongsTo(UserModel);                                                           //ArticleModel belongs to UserModel
+UserModel.hasMany(CommentModel,                                                               //UserModel has many CommentModel
+    {foreignKey: "userId",onDelete:"NO ACTION", hooks:true})                                 //set the foreign key to userId and do not cascade on delete
+  CommentModel.belongsTo(UserModel);                                                         //CommentModel belongs to UserModel
 
 export default UserModel

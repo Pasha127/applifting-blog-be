@@ -1,31 +1,30 @@
-
 import { Sequelize } from "sequelize"
 
-const { PG_DB, PG_HOST, PG_PORT, PG_PW, PG_USER } = process.env
+const { PG_DB, PG_HOST, PG_PORT, PG_PW, PG_USER } = process.env        //define the env variables
 
-const sequelize = new Sequelize(PG_DB!, PG_USER!, PG_PW, {
-  host: PG_HOST,
-  port:  PG_PORT ? parseInt(PG_PORT): 5432,
-  dialect: "postgres",
-  typeValidation: true,
+const sequelize = new Sequelize(PG_DB!, PG_USER!, PG_PW, {             //create a new sequelize instance
+  host: PG_HOST,                                                       //define the host
+  port:  PG_PORT ? parseInt(PG_PORT): 5432,                            //define the port
+  dialect: "postgres",                                                 //define the SQL dialect
+  typeValidation: true,                                                //define the typeValidation
 })
 
 export const pgConnect = async () => {
   try {
-    await sequelize.authenticate({ logging: true })
-    console.log("connnected to PG")
-  } catch (error) {
-    console.log(error)
-    process.exit(1)
+    await sequelize.authenticate({ logging: true })              //connect to the db
+    console.log("connnected to PG")                             //log the connection
+  } catch (error) {                                           //if there is an error
+    console.log(error)                                           //log the error
+    process.exit(1)                                           //exit the process
   }
 }
 
 export const syncModels = async () => {
   try {
-    await sequelize.sync({ alter: true, logging: true })
-    console.log("synced")
-  } catch (error) {
-    console.log(error)
+    await sequelize.sync({ alter: true, logging: true })       //sync the models
+    console.log("synced")                                    //log the sync
+  } catch (error) {                                       //if there is an error
+    console.log(error)                                          //log the error
   }
 }
 
