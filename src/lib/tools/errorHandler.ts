@@ -1,4 +1,4 @@
-const errorHandler = (err, req, res, next) => {  // <---- THIS IS THE ERROR HANDLER
+const errorHandler = (err:any, req:any, res:any, next:any) => {  // <---- THIS IS THE ERROR HANDLER
     /* console.log("error check",err) */
     switch (err.status){
       case 400:                                                                         //if the error is a 400

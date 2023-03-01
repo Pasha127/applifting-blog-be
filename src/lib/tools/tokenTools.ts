@@ -3,6 +3,7 @@ const httpErrorCreator: any = createHttpError;
 import jwt from "jsonwebtoken"
 import UserModel from "../../api/models/UserModel";
 import userModel from "../../api/models/UserModel";
+import { UserModelType } from "../ts/types";
 export const createTokens = async (user: any) => {
   const accessToken = await createAccessToken({ _id: user._id, username: user.username, role: user.role }); //create access token
   const refreshToken = await createRefreshToken({ _id: user._id });                                         //create refresh token
@@ -56,7 +57,7 @@ const verifyRefreshToken = (refreshToken: string) =>
       if (!refreshTokenPayload) {                                                          //if no payload
         throw new httpErrorCreator(401, "Refresh token invalid!");                              //throw error
       }
-      const user = await UserModel.findOne({ where: { id: refreshTokenPayload.id } });                     //find user in db
+      const user:UserModelType|null = await UserModel.findOne({ where: { id: refreshTokenPayload.id } });                     //find user in db
       if (!user) {                                                                                    //if no user
         throw new httpErrorCreator(404, `User with id ${refreshTokenPayload.id} not found!`);             //throw error
       }

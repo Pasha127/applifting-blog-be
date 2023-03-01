@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import listEndpoints from "express-list-endpoints";
-import router from "././api/router/index";
 import googleStrategy from "./lib/auth/googleAuth";
 import errorHandler from "./lib/tools/errorHandler";
 import passport from "passport";
@@ -10,19 +9,20 @@ import { Server as SocketServer } from "socket.io";
 import { createServer } from "http";
 import { newConnectionHandler } from "./lib/tools/socketSettings";
 import { verifyAccessToken } from "./lib/tools/tokenTools";
+import userRouter from "./api/routers/userRouter";
 
 export const server = express();                                                              // <---- THIS IS THE EXPRESS SERVER
 export const httpServer = createServer(server);                                               // <---- THIS IS THE HTTP SERVER
 export const io = new SocketServer(httpServer);                                               // <---- THIS IS THE SOCKET SERVER
 io.use( async(socket, next) => {                                                             // <---- THIS IS THE SOCKET AUTH MIDDLEWARE
   const token = socket.handshake.headers.cookie?.split(";")[0].replace("accessToken=", "");  // read the token from the cookie
- const isAllowed = await verifyAccessToken(token)                                             // verify the token
-  if (isAllowed._id) {                                                                      // if the token is valid
-    console.log("is",isAllowed._id)                                                        // log the user id
+  if (token) {const isAllowed:any = await verifyAccessToken(token)                                            // verify the token
+  if (isAllowed?.id) {                                                                      // if the token is valid
+    console.log("is",isAllowed.id)                                                        // log the user id
     next();                                                                             // allow the connection
   } else {
     console.log('auth failed')                                                          // else - log the error
-  }
+  }} 
 })
 io.on('connection', newConnectionHandler)                                                  // <---- THIS IS THE SOCKET CONNECTION HANDLER
 
@@ -37,5 +37,5 @@ server.use(cors({                                                               
 server.use(cookieParser());                                                            // <---- THIS IS THE COOKIE PARSER MIDDLEWARE
 server.use(express.json());                                                          // <---- THIS IS THE JSON PARSER MIDDLEWARE
 server.use(passport.initialize());                                                 // <---- THIS IS THE PASSPORT MIDDLEWARE
-server.use("/", router);                                                          // <---- THIS IS THE ROUTER MIDDLEWARE
+server.use("/user", userRouter);                                                          // <---- THIS IS THE ROUTER MIDDLEWARE
 server.use(errorHandler);                                                       // <---- THIS IS THE ERROR HANDLER MIDDLEWARE
