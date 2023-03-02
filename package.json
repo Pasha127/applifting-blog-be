@@ -5,8 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "test": "jest --config ./jest.config.json",
+    "build": "tsc",
+    "start": "nodemon --exec src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "@types/passport-google-oauth20": "^2.0.11",
     "@types/sequelize": "^4.28.14",
     "@types/socket.io": "^3.0.2",
+    "@types/supertest": "^2.0.12",
     "atob": "^2.1.2",
     "badwords-list": "^1.0.0",
     "bcrypt": "^5.1.0",
