@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize"
 import curses from "badwords-list";
-import sequelize from "../../db";
-import ArticleModel from "./ArticleModel";
-import CommentModel from "./CommentModel";
+import sequelize from "../../db.js";
+import ArticleModel from "./ArticleModel.js";
+import CommentModel from "./CommentModel.js";
 
 const UserModel = sequelize.define(                                             //define the user model
   "user", 

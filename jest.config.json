@@ -1,0 +1,6 @@
+{
+    "name": "applifting-blog-be",
+    "jest": {
+      "verbose": true
+    }
+  }

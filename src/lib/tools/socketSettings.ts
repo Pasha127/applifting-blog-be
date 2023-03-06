@@ -1,7 +1,6 @@
 import { Socket } from "socket.io";
-/* import articleModel from "../api/models/chatModel.js"; */
-import  {io}  from "../../server";
-import { VoteSocket } from "../ts/types";
+import  {io}  from "../../server.js";
+import { VoteSocket } from "../ts/types.js";
 
 
 export const newConnectionHandler = (newClient: Socket ) => {                                                // <---- THIS IS THE SOCKET HANDLER

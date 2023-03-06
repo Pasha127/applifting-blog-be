@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize"
 import curses from "badwords-list";
-import sequelize from "../../db";
+import sequelize from "../../db.js";
 
 const CommentModel = sequelize.define("comment", {                      //define the comment model
     commentId: {

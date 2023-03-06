@@ -7,7 +7,9 @@
   "scripts": {
     "test": "jest --config ./jest.config.json",
     "build": "tsc",
-    "start": "nodemon --exec src/index.ts"
+    "watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
+    "dev": "nodemon -r dotenv/config build/index.js",
+    "start": "node build/index.js"
   },
   "repository": {
     "type": "git",
@@ -55,7 +57,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "jest": "^29.4.2",
-    "nodemon": "^2.0.20",
+    "nodemon": "^2.0.21",
     "supertest": "^6.3.3",
     "typescript": "^4.9.5"
   }

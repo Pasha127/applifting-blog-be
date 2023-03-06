@@ -1,8 +1,7 @@
 import createHttpError from "http-errors" 
 const httpErrorCreator: any = createHttpError;
 import jwt from "jsonwebtoken"
-import UserModel from "../../api/models/UserModel";
-import userModel from "../../api/models/UserModel";
+import UserModel from "../../api/models/UserModel.js";
 import { UserModelType } from "../ts/types";
 export const createTokens = async (user: any) => {
   const accessToken = await createAccessToken({ _id: user._id, username: user.username, role: user.role }); //create access token

@@ -1,5 +1,5 @@
 import createHttpError from "http-errors"
-import { refreshTokens, verifyAccessToken } from "../tools/tokenTools";
+import { refreshTokens, verifyAccessToken } from "../tools/tokenTools.js";
 
 export const JWTAuth = async (req:any, res:any, next:any) => {                                                 //JWT authentication middleware
     if (!req.cookies.accessToken) {                                                               //if no access token in cookies

@@ -1,8 +1,8 @@
 import express from "express";
 import createHttpError from "http-errors";
 import { Model, Op } from "sequelize";
-import UserModel from "../models/UserModel"
-import {UserModelType} from "../../lib/ts/types"
+import UserModel from "../models/UserModel.js"
+import {UserModelType} from "../../lib/ts/types.js"
 
 
 
